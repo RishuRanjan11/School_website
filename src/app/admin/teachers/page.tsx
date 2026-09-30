@@ -201,7 +201,6 @@ export default function AdminTeachersPage() {
   const departments = [
     'All',
     'Higher Secondary (Science)',
-    'Higher Secondary (Commerce)',
     'Higher Secondary (Arts)',
     'Secondary (Classes IX-X)',
   ];
@@ -429,11 +428,10 @@ export default function AdminTeachersPage() {
                     onChange={(e) => setFormData({ ...formData, department: e.target.value })}
                     className="w-full px-3.5 py-2 bg-slate-800 border border-slate-700 rounded-xl text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-gold-500"
                   >
-                    <option value="Higher Secondary (Science)">Higher Secondary (Science)</option>
-                    <option value="Higher Secondary (Commerce)">Higher Secondary (Commerce)</option>
-                    <option value="Higher Secondary (Arts)">Higher Secondary (Arts / Humanities)</option>
+                    <option value="Higher Secondary (Science)">Science (Classes XI-XII)</option>
+                    <option value="Higher Secondary (Arts)">Arts (Classes XI-XII)</option>
                     <option value="Secondary (Classes IX-X)">Secondary (Classes IX-X)</option>
-                    <option value="Middle & Primary">Middle & Primary</option>
+                    
                   </select>
                 </div>
 
