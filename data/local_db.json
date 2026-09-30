@@ -1,0 +1,266 @@
+{
+  "teachers": [
+    {
+      "id": "t-1",
+      "name": "Dr. Rajesh Sharma",
+      "subject": "Physics",
+      "department": "Higher Secondary (Science)",
+      "designation": "Head of Science Department",
+      "qualification": "Ph.D. in Physics, M.Sc., B.Ed.",
+      "experience": "16+ Years",
+      "email": "rajesh.sharma@apexacademy.edu.in",
+      "phone": "+91 98111 22334",
+      "photo_url": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=600",
+      "bio": "Updated bio: Mentored top 50 rankers in national physics olympiads.",
+      "order_index": 1,
+      "created_at": "2026-01-10T10:00:00.000Z"
+    },
+    {
+      "id": "t-2",
+      "name": "Mrs. Sunita Verma",
+      "subject": "Chemistry",
+      "department": "Higher Secondary (Science)",
+      "designation": "Senior PGT Chemistry",
+      "qualification": "M.Sc. Chemistry (Gold Medalist), B.Ed.",
+      "experience": "14 Years",
+      "email": "sunita.verma@apexacademy.edu.in",
+      "phone": "+91 98111 22335",
+      "photo_url": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600",
+      "bio": "Passionate about Organic Chemistry and interactive laboratory research.",
+      "order_index": 2,
+      "created_at": "2026-01-10T10:05:00.000Z"
+    },
+    {
+      "id": "t-3",
+      "name": "Mr. Amitav Sen",
+      "subject": "Mathematics",
+      "department": "Higher Secondary (Science & Commerce)",
+      "designation": "PGT Mathematics & Olympiad Trainer",
+      "qualification": "M.Sc. Applied Mathematics, B.Ed.",
+      "experience": "12 Years",
+      "email": "amitav.sen@apexacademy.edu.in",
+      "phone": "+91 98111 22336",
+      "photo_url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600",
+      "bio": "Author of competitive mathematics guides and regional coordinator for Maths Olympiad.",
+      "order_index": 3,
+      "created_at": "2026-01-10T10:10:00.000Z"
+    },
+    {
+      "id": "t-4",
+      "name": "Dr. Meenakshi Iyer",
+      "subject": "Biology & Biotechnology",
+      "department": "Higher Secondary (Science)",
+      "designation": "Senior PGT Biology",
+      "qualification": "Ph.D. in Life Sciences, M.Sc. Botany",
+      "experience": "15 Years",
+      "email": "meenakshi.iyer@apexacademy.edu.in",
+      "phone": "+91 98111 22337",
+      "photo_url": "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=600",
+      "bio": "Guiding pre-medical NEET aspirants with high success rates and field ecology workshops.",
+      "order_index": 4,
+      "created_at": "2026-01-10T10:15:00.000Z"
+    },
+    {
+      "id": "t-5",
+      "name": "Mr. Rajiv Singhania",
+      "subject": "Accountancy & Financial Markets",
+      "department": "Higher Secondary (Commerce)",
+      "designation": "Head of Commerce Stream",
+      "qualification": "FCA, M.Com., B.Ed.",
+      "experience": "18 Years",
+      "email": "rajiv.singhania@apexacademy.edu.in",
+      "phone": "+91 98111 22338",
+      "photo_url": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=600",
+      "bio": "Chartered Accountant turned educator, specializes in financial literacy and corporate accounting.",
+      "order_index": 5,
+      "created_at": "2026-01-10T10:20:00.000Z"
+    },
+    {
+      "id": "t-6",
+      "name": "Mrs. Priya Malhotra",
+      "subject": "Economics & Business Studies",
+      "department": "Higher Secondary (Commerce)",
+      "designation": "Senior PGT Commerce",
+      "qualification": "M.A. Economics (Delhi School of Economics), B.Ed.",
+      "experience": "11 Years",
+      "email": "priya.malhotra@apexacademy.edu.in",
+      "phone": "+91 98111 22339",
+      "photo_url": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=600",
+      "bio": "Focuses on Macroeconomics case studies and national business plan competitions for high schoolers.",
+      "order_index": 6,
+      "created_at": "2026-01-10T10:25:00.000Z"
+    },
+    {
+      "id": "t-7",
+      "name": "Dr. Ananya Mukherjee",
+      "subject": "History & Political Science",
+      "department": "Higher Secondary (Arts / Humanities)",
+      "designation": "Head of Humanities",
+      "qualification": "Ph.D. in Modern History, M.A., NET Qualified",
+      "experience": "13 Years",
+      "email": "ananya.mukherjee@apexacademy.edu.in",
+      "phone": "+91 98111 22340",
+      "photo_url": "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&q=80&w=600",
+      "bio": "Mentoring youth parliament teams, debate society, and competitive civil services foundation.",
+      "order_index": 7,
+      "created_at": "2026-01-10T10:30:00.000Z"
+    },
+    {
+      "id": "t-8",
+      "name": "Mr. Rohan Joshi",
+      "subject": "Computer Science & Artificial Intelligence",
+      "department": "Higher Secondary (Science)",
+      "designation": "PGT Computer Science & IT Incharge",
+      "qualification": "M.Tech CSE, B.Tech, B.Ed.",
+      "experience": "9 Years",
+      "email": "rohan.joshi@apexacademy.edu.in",
+      "phone": "+91 98111 22341",
+      "photo_url": "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&q=80&w=600",
+      "bio": "Leads school coding club, robotics lab, and Python / Full-stack programming curriculum.",
+      "order_index": 8,
+      "created_at": "2026-01-10T10:35:00.000Z"
+    },
+    {
+      "id": "t-9",
+      "name": "Mrs. Shalini Gupta",
+      "subject": "English Literature & Communication",
+      "department": "Secondary (Classes IX-X)",
+      "designation": "TGT English & Editorial Board Head",
+      "qualification": "M.A. English, B.Ed.",
+      "experience": "10 Years",
+      "email": "shalini.gupta@apexacademy.edu.in",
+      "phone": "+91 98111 22342",
+      "photo_url": "https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?auto=format&fit=crop&q=80&w=600",
+      "bio": "Chief Editor of the School Annual Magazine and public speaking trainer.",
+      "order_index": 9,
+      "created_at": "2026-01-10T10:40:00.000Z"
+    },
+    {
+      "name": "Dr. Vikram Malhotra",
+      "subject": "Biotechnology",
+      "department": "Higher Secondary (Science)",
+      "designation": "Senior Research Mentor & PGT",
+      "qualification": "Ph.D. in Genetics, M.Sc., B.Ed.",
+      "experience": "8 Years",
+      "email": "vikram.malhotra@apexacademy.edu.in",
+      "phone": "+91 98111 99999",
+      "photo_url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600",
+      "bio": "Expert in molecular genetics and pre-medical biology preparation.",
+      "order_index": 0,
+      "id": "t-1790785274063",
+      "created_at": "2026-09-30T16:21:14.063Z"
+    }
+  ],
+  "gallery_images": [
+    {
+      "title": "Inter-School Robotic Hackathon 2026",
+      "description": "Higher Secondary team bagged 1st prize for autonomous rover demonstration.",
+      "category": "Science Exhibition",
+      "image_url": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=1200",
+      "is_featured": true,
+      "event_date": "2026-03-20",
+      "id": "g-1790785274068",
+      "created_at": "2026-09-30T16:21:14.068Z"
+    },
+    {
+      "id": "g-1",
+      "title": "Advanced Science & Digital Innovation Complex",
+      "description": "Advanced Physics, Chemistry, and Biology laboratories equipped with modern digital instrumentation.",
+      "category": "Campus",
+      "image_url": "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&q=80&w=1200",
+      "is_featured": true,
+      "event_date": "2026-02-15",
+      "created_at": "2026-02-15T09:00:00.000Z"
+    },
+    {
+      "id": "g-2",
+      "title": "Annual Athletic Meet & Sports Championship",
+      "description": "Students competing with great enthusiasm across track events, football, basketball, and badminton.",
+      "category": "Sports",
+      "image_url": "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&q=80&w=1200",
+      "is_featured": true,
+      "event_date": "2026-01-20",
+      "created_at": "2026-01-20T11:00:00.000Z"
+    },
+    {
+      "id": "g-3",
+      "title": "Annual Cultural Fest & Musical Performance",
+      "description": "Celebration of diversity, classical dance forms, drama, and symphonic orchestra performances.",
+      "category": "Annual Day",
+      "image_url": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&q=80&w=1200",
+      "is_featured": true,
+      "event_date": "2025-12-22",
+      "created_at": "2025-12-22T18:00:00.000Z"
+    },
+    {
+      "id": "g-4",
+      "title": "National Science & Robotics Expo",
+      "description": "Higher Secondary (+2) students presenting AI-powered prototypes and renewable energy solutions.",
+      "category": "Science Exhibition",
+      "image_url": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=1200",
+      "is_featured": true,
+      "event_date": "2025-11-14",
+      "created_at": "2025-11-14T10:30:00.000Z"
+    },
+    {
+      "id": "g-5",
+      "title": "Modern Central Digital Library",
+      "description": "Over 25,000 titles, international journals, quiet study pods, and e-learning resources.",
+      "category": "Campus",
+      "image_url": "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&q=80&w=1200",
+      "is_featured": false,
+      "event_date": "2026-03-01",
+      "created_at": "2026-03-01T08:00:00.000Z"
+    },
+    {
+      "id": "g-6",
+      "title": "Investiture Ceremony & Student Council Inauguration",
+      "description": "Induction of Head Boy, Head Girl, Sports Captains, and House Prefects for the academic session.",
+      "category": "Events",
+      "image_url": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=1200",
+      "is_featured": false,
+      "event_date": "2025-08-15",
+      "created_at": "2025-08-15T09:30:00.000Z"
+    }
+  ],
+  "notices": [
+    {
+      "id": "n-1",
+      "title": "Admissions Open for Class XI (+2 Science, Commerce & Humanities) 2026-27",
+      "content": "Registration forms for Class XI provisional admission are now open. Merit scholarship test scheduled for next Saturday.",
+      "date": "2026-03-15",
+      "category": "Admissions",
+      "is_important": true
+    },
+    {
+      "id": "n-2",
+      "title": "Senior Secondary Pre-Board Examination Schedule Released",
+      "content": "Detailed date sheet for Class XII Pre-Board examinations has been uploaded to the student portal.",
+      "date": "2026-03-10",
+      "category": "Examination",
+      "is_important": false
+    },
+    {
+      "id": "n-3",
+      "title": "Parent-Teacher Interactive Meeting for Classes IX to XII",
+      "content": "Parent-Teacher meeting will be held on Saturday from 9:00 AM to 1:00 PM. All parents are cordially invited.",
+      "date": "2026-03-05",
+      "category": "Academic",
+      "is_important": false
+    }
+  ],
+  "inquiries": [
+    {
+      "student_name": "Rohan Sharma",
+      "parent_name": "Mr. V. K. Sharma",
+      "email": "rohan.sharma@example.com",
+      "phone": "+91 9876543210",
+      "class_applying": "Class XI (+2 Higher Secondary)",
+      "stream": "Science (PCM)",
+      "message": "Interested in JEE Advanced coaching foundation.",
+      "id": "inq-1790785220652",
+      "status": "New",
+      "created_at": "2026-09-30T16:20:20.652Z"
+    }
+  ]
+}
