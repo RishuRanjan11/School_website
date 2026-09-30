@@ -1,11 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getTeachers, addTeacher } from '@/lib/db';
 import { verifyAdminRequest } from '@/lib/auth';
+import { getStorageProxyUrl } from '@/lib/storage-url';
+import { getDatabaseSetupError } from '@/lib/database-errors';
+
+export const dynamic = 'force-dynamic';
 
 export async function GET() {
   try {
     const teachers = await getTeachers();
-    return NextResponse.json({ success: true, data: teachers });
+    return NextResponse.json({
+      success: true,
+      data: teachers.map((teacher) => ({
+        ...teacher,
+        photo_url: teacher.photo_url ? getStorageProxyUrl(teacher.photo_url) : '',
+      })),
+    });
   } catch (error) {
     console.error('Error fetching teachers:', error);
     return NextResponse.json(
@@ -26,7 +36,7 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json();
-    const { name, subject, department, designation, qualification, experience, email, phone, photo_url, bio } = body;
+    const { name, subject, department, designation, experience, email, phone, photo_url, bio, classes_taught } = body;
 
     if (!name || !subject || !department) {
       return NextResponse.json(
@@ -40,11 +50,12 @@ export async function POST(req: NextRequest) {
       subject: subject.trim(),
       department: department.trim(),
       designation: (designation || 'Teacher').trim(),
-      qualification: (qualification || 'Graduate').trim(),
+      qualification: '',
+      classes_taught: (classes_taught || '').trim(),
       experience: (experience || '1 Year').trim(),
       email: (email || '').trim(),
       phone: (phone || '').trim(),
-      photo_url: photo_url || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=600',
+      photo_url: photo_url || '',
       bio: (bio || '').trim(),
       order_index: body.order_index || 0,
     });
@@ -53,7 +64,11 @@ export async function POST(req: NextRequest) {
   } catch (error) {
     console.error('Error adding teacher:', error);
     return NextResponse.json(
-      { success: false, message: 'Failed to add teacher' },
+      {
+        success: false,
+        message: getDatabaseSetupError(error)
+          || (error instanceof Error ? error.message : 'Failed to add teacher'),
+      },
       { status: 500 }
     );
   }

@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
 import { Teacher } from '@/types';
+import TeacherAvatar from '@/components/TeacherAvatar';
 import { 
   Users, 
   Plus, 
@@ -13,11 +13,6 @@ import {
   Upload, 
   Check, 
   AlertCircle,
-  Briefcase,
-  BookOpen,
-  Mail,
-  Phone,
-  GraduationCap
 } from 'lucide-react';
 
 export default function AdminTeachersPage() {
@@ -37,8 +32,8 @@ export default function AdminTeachersPage() {
     subject: '',
     department: 'Higher Secondary (Science)',
     designation: 'Senior PGT',
-    qualification: 'M.Sc., B.Ed.',
     experience: '5+ Years',
+    classes_taught: '',
     email: '',
     phone: '',
     photo_url: '',
@@ -115,8 +110,8 @@ export default function AdminTeachersPage() {
       subject: teacher.subject,
       department: teacher.department,
       designation: teacher.designation,
-      qualification: teacher.qualification,
       experience: teacher.experience,
+      classes_taught: teacher.classes_taught || '',
       email: teacher.email || '',
       phone: teacher.phone || '',
       photo_url: teacher.photo_url || '',
@@ -231,7 +226,7 @@ export default function AdminTeachersPage() {
             <span>Faculty & Teachers Directory</span>
           </h1>
           <p className="text-xs sm:text-sm text-slate-400 mt-1">
-            Add new educators, modify teaching assignments, or update qualifications & photos.
+            Add new educators, set the classes they teach, and update their photos.
           </p>
         </div>
 
@@ -294,7 +289,7 @@ export default function AdminTeachersPage() {
                   <th className="py-4 px-4 sm:px-6">Teacher</th>
                   <th className="py-4 px-4">Subject & Stream</th>
                   <th className="py-4 px-4">Designation</th>
-                  <th className="py-4 px-4 hidden md:table-cell">Qualifications</th>
+                  <th className="py-4 px-4 hidden md:table-cell">Classes Taught</th>
                   <th className="py-4 px-4 hidden lg:table-cell">Contact</th>
                   <th className="py-4 px-4 text-right">Actions</th>
                 </tr>
@@ -304,14 +299,11 @@ export default function AdminTeachersPage() {
                   <tr key={teacher.id} className="hover:bg-slate-800/40 transition">
                     <td className="py-4 px-4 sm:px-6">
                       <div className="flex items-center gap-3">
-                        <div className="relative w-10 h-10 rounded-full overflow-hidden bg-slate-800 shrink-0 border border-slate-700">
-                          <Image
-                            src={teacher.photo_url || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=300'}
-                            alt={teacher.name}
-                            fill
-                            className="object-cover"
-                          />
-                        </div>
+                        <TeacherAvatar
+                          src={teacher.photo_url}
+                          alt={teacher.name}
+                          className="w-10 h-10 rounded-full shrink-0 border border-slate-700"
+                        />
                         <div>
                           <div className="font-bold text-white text-sm">{teacher.name}</div>
                           <div className="text-[11px] text-slate-400">{teacher.experience} Experience</div>
@@ -333,7 +325,7 @@ export default function AdminTeachersPage() {
                     </td>
 
                     <td className="py-4 px-4 hidden md:table-cell text-slate-400 text-xs">
-                      {teacher.qualification}
+                      {teacher.classes_taught || 'Not specified'}
                     </td>
 
                     <td className="py-4 px-4 hidden lg:table-cell text-slate-400 text-xs space-y-0.5">
@@ -462,19 +454,6 @@ export default function AdminTeachersPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-                    Qualifications
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="e.g. Ph.D. in Physics, M.Sc., B.Ed."
-                    value={formData.qualification}
-                    onChange={(e) => setFormData({ ...formData, qualification: e.target.value })}
-                    className="w-full px-3.5 py-2 bg-slate-800 border border-slate-700 rounded-xl text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-gold-500"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1.5">
                     Teaching Experience
                   </label>
                   <input
@@ -487,6 +466,19 @@ export default function AdminTeachersPage() {
                 </div>
               </div>
 
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                  Classes Taught
+                </label>
+                <input
+                  type="text"
+                  placeholder="e.g. Classes 9–10, Physics for Classes 11–12"
+                  value={formData.classes_taught}
+                  onChange={(e) => setFormData({ ...formData, classes_taught: e.target.value })}
+                  className="w-full px-3.5 py-2 bg-slate-800 border border-slate-700 rounded-xl text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-gold-500"
+                />
+              </div>
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-semibold text-slate-300 mb-1.5">
@@ -494,7 +486,7 @@ export default function AdminTeachersPage() {
                   </label>
                   <input
                     type="email"
-                    placeholder="teacher@apexacademy.edu.in"
+                    placeholder="teacher@school.edu.in"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="w-full px-3.5 py-2 bg-slate-800 border border-slate-700 rounded-xl text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-gold-500"
@@ -540,21 +532,18 @@ export default function AdminTeachersPage() {
                   </label>
                 </div>
 
-                {formData.photo_url && (
-                  <div className="mt-2 flex items-center gap-3 p-2 bg-slate-800/50 rounded-xl border border-slate-700">
-                    <div className="relative w-10 h-10 rounded-full overflow-hidden bg-slate-700">
-                      <Image
-                        src={formData.photo_url}
-                        alt="Preview"
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
+                <div className="mt-2 flex items-center gap-3 p-2 bg-slate-800/50 rounded-xl border border-slate-700">
+                    <TeacherAvatar
+                      src={formData.photo_url}
+                      alt="Teacher photo preview"
+                      className="w-10 h-10 rounded-full shrink-0"
+                    />
+                    {formData.photo_url && (
                     <span className="text-xs text-emerald-400 flex items-center gap-1">
                       <Check className="w-3 h-3" /> Photo linked successfully
                     </span>
-                  </div>
-                )}
+                    )}
+                </div>
               </div>
 
               <div>

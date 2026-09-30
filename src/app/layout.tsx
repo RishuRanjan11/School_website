@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Apex International Academy | Senior Secondary (+2) School',
-  description: 'Premier Senior Secondary School offering holistic education, CBSE Science, Commerce, and Arts streams with advanced laboratories and distinguished faculty.',
-  keywords: ['school', '+2 school', 'CBSE school', 'Higher Secondary', 'Science stream', 'Commerce stream', 'Humanities', 'Apex International Academy'],
+  title: 'UUMV Mahasingh Hasauli | Senior Secondary School',
+  description: 'Utkramit Uccha Madhyamik Vidyalaya Mahasingh Hasauli, Madhepur, Madhubani, Bihar.',
+  keywords: ['school', '+2 school', 'Higher Secondary', 'Science stream', 'Arts stream', 'UUMV Mahasingh Hasauli'],
 };
 
 export default function RootLayout({

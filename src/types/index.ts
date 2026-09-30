@@ -4,7 +4,8 @@ export interface Teacher {
   subject: string;
   department: string; // e.g. "Higher Secondary (Science)", "Higher Secondary (Commerce)", "Higher Secondary (Arts)", "Secondary (IX-X)", "Middle & Primary"
   designation: string; // e.g. "PGT Physics", "Head of Department", "TGT English"
-  qualification: string; // e.g. "M.Sc., B.Ed."
+  qualification?: string;
+  classes_taught?: string;
   experience: string; // e.g. "12 Years"
   email: string;
   phone: string;
@@ -21,7 +22,7 @@ export interface GalleryImage {
   category: string; // "Campus" | "Sports" | "Annual Day" | "Science Exhibition" | "Events" | "Academic"
   image_url: string;
   is_featured: boolean; // showcase on homepage
-  event_date: string;
+  event_date: string | null;
   created_at?: string;
 }
 

@@ -8,11 +8,11 @@ export default function TermsPage() {
         <p className="text-sm text-slate-500">Last updated: October 2026</p>
         <div className="space-y-4 text-sm text-slate-600 leading-relaxed">
           <p>
-            By accessing and utilizing the Apex International Academy official website, you agree to comply with the terms and conditions outlined herein.
+            By accessing and utilizing the UUMV Mahasingh Hasauli official website, you agree to comply with the terms and conditions outlined herein.
           </p>
           <h2 className="text-lg font-bold text-slate-800 pt-2">1. Use of Content</h2>
           <p>
-            All photographs, curriculum documents, faculty profiles, and school logos published on this website are the intellectual property of Apex International Academy. Unauthorized reproduction or commercial use is prohibited without prior written permission.
+            All photographs, curriculum documents, faculty profiles, and school logos published on this website are the intellectual property of UUMV Mahasingh Hasauli. Unauthorized reproduction or commercial use is prohibited without prior written permission.
           </p>
           <h2 className="text-lg font-bold text-slate-800 pt-2">2. Accuracy of Information</h2>
           <p>

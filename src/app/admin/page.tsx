@@ -135,7 +135,7 @@ export default async function AdminDashboardPage() {
             </Link>
           </div>
           <p className="text-xs text-slate-400 leading-relaxed">
-            Update teacher designations, qualifications, subject mappings (+2 Science, Commerce, Arts), and contact information displayed on the website.
+            Update teacher designations, classes taught, subject mappings, and contact information displayed on the website.
           </p>
           <div className="pt-2">
             <Link
@@ -163,7 +163,7 @@ export default async function AdminDashboardPage() {
             </Link>
           </div>
           <p className="text-xs text-slate-400 leading-relaxed">
-            Upload new high-resolution school photos, tag them by category (Campus, Sports, Science Exhibition, Annual Day), and select which appear on the homepage.
+            Upload school and event photos, add captions, and select which appear on the homepage.
           </p>
           <div className="pt-2">
             <Link

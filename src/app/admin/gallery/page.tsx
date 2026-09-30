@@ -14,15 +14,11 @@ import {
   AlertCircle,
   Star,
   Calendar,
-  Tag,
-  Filter
 } from 'lucide-react';
 
 export default function AdminGalleryPage() {
   const [images, setImages] = useState<GalleryImage[]>([]);
   const [loading, setLoading] = useState(true);
-  const [activeCategory, setActiveCategory] = useState('All');
-
   // Modal States
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [editingImage, setEditingImage] = useState<GalleryImage | null>(null);
@@ -32,7 +28,6 @@ export default function AdminGalleryPage() {
   const initialForm = {
     title: '',
     description: '',
-    category: 'Campus',
     image_url: '',
     is_featured: true,
     event_date: new Date().toISOString().split('T')[0],
@@ -106,7 +101,6 @@ export default function AdminGalleryPage() {
     setFormData({
       title: img.title,
       description: img.description || '',
-      category: img.category,
       image_url: img.image_url,
       is_featured: img.is_featured,
       event_date: img.event_date || new Date().toISOString().split('T')[0],
@@ -208,13 +202,6 @@ export default function AdminGalleryPage() {
     }
   };
 
-  const categories = ['All', 'Campus', 'Sports', 'Annual Day', 'Science Exhibition', 'Events'];
-
-  const filteredImages = images.filter((img) => {
-    if (activeCategory === 'All') return true;
-    return img.category.toLowerCase() === activeCategory.toLowerCase();
-  });
-
   return (
     <div className="space-y-6 max-w-7xl mx-auto">
       {/* Top Header */}
@@ -238,27 +225,7 @@ export default function AdminGalleryPage() {
         </button>
       </div>
 
-      {/* Filter Tabs */}
       <div className="p-4 bg-slate-900 border border-slate-800 rounded-2xl flex items-center justify-between gap-4 flex-wrap">
-        <div className="flex items-center gap-2 flex-wrap">
-          <span className="text-xs font-semibold text-slate-400 flex items-center gap-1 mr-1">
-            <Filter className="w-3.5 h-3.5" /> Category:
-          </span>
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition ${
-                activeCategory === cat
-                  ? 'bg-gold-500 text-slate-950 font-bold'
-                  : 'bg-slate-800 text-slate-400 hover:text-white'
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-
         <div className="text-xs text-slate-400">
           Total: <span className="text-white font-bold">{images.length}</span> images ({images.filter(i => i.is_featured).length} featured on homepage)
         </div>
@@ -270,14 +237,14 @@ export default function AdminGalleryPage() {
           <div className="w-8 h-8 border-2 border-gold-500 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
           Loading gallery images...
         </div>
-      ) : filteredImages.length === 0 ? (
+      ) : images.length === 0 ? (
         <div className="p-16 text-center bg-slate-900 border border-slate-800 rounded-2xl">
           <Camera className="w-10 h-10 text-slate-600 mx-auto mb-2" />
-          <p className="text-slate-400 text-sm">No images found in this category.</p>
+          <p className="text-slate-400 text-sm">No images found.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredImages.map((item) => (
+          {images.map((item) => (
             <div
               key={item.id}
               className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-lg flex flex-col justify-between group"
@@ -294,10 +261,6 @@ export default function AdminGalleryPage() {
 
                 {/* Top Badges */}
                 <div className="absolute top-3 left-3 right-3 flex justify-between items-center">
-                  <span className="px-2.5 py-1 rounded-md bg-slate-950/80 backdrop-blur-md text-gold-400 text-xs font-semibold border border-gold-500/20">
-                    {item.category}
-                  </span>
-
                   {/* Instant Toggle Featured Button */}
                   <button
                     onClick={() => toggleFeatured(item)}
@@ -444,36 +407,16 @@ export default function AdminGalleryPage() {
                 />
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-                    Category Tag *
-                  </label>
-                  <select
-                    value={formData.category}
-                    onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                    className="w-full px-3.5 py-2 bg-slate-800 border border-slate-700 rounded-xl text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-gold-500"
-                  >
-                    <option value="Campus">Campus Infrastructure</option>
-                    <option value="Sports">Sports & Athletics</option>
-                    <option value="Annual Day">Annual Day & Cultural</option>
-                    <option value="Science Exhibition">Science Exhibition & Labs</option>
-                    <option value="Events">Investiture & Formal Events</option>
-                    <option value="Academic">Academic Awards & Ceremonies</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-                    Event Date
-                  </label>
-                  <input
-                    type="date"
-                    value={formData.event_date}
-                    onChange={(e) => setFormData({ ...formData, event_date: e.target.value })}
-                    className="w-full px-3.5 py-2 bg-slate-800 border border-slate-700 rounded-xl text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-gold-500"
-                  />
-                </div>
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                  Event Date
+                </label>
+                <input
+                  type="date"
+                  value={formData.event_date}
+                  onChange={(e) => setFormData({ ...formData, event_date: e.target.value })}
+                  className="w-full px-3.5 py-2 bg-slate-800 border border-slate-700 rounded-xl text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-gold-500"
+                />
               </div>
 
               <div>
@@ -522,7 +465,7 @@ export default function AdminGalleryPage() {
                 </button>
                 <button
                   type="submit"
-                  disabled={submitting}
+                  disabled={submitting || uploading}
                   className="px-6 py-2 rounded-xl text-xs sm:text-sm font-bold text-slate-950 bg-gold-400 hover:bg-gold-300 disabled:opacity-50 transition"
                 >
                   {submitting ? 'Saving...' : editingImage ? 'Save Changes' : 'Upload Image'}

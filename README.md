@@ -1,4 +1,4 @@
-# Apex International Academy - Full Stack School Website & Admin Console
+# UUMV Mahasingh Hasauli - Full Stack School Website & Admin Console
 
 A modern, responsive, full-stack website for a Senior Secondary (+2) School featuring CBSE curriculum streams (Science, Commerce, Arts), public-facing information portals, interactive event showcase, and a dedicated **Admin Dashboard** to control teachers' details and homepage event photos.
 
@@ -74,7 +74,12 @@ You can host this website and database for free using **Vercel** and **Supabase*
 1. Go to [https://supabase.com](https://supabase.com) and create a free account.
 2. Create a new project (e.g., `school-website`).
 3. In the left navigation, go to **SQL Editor** ➔ click **New Query**.
-4. Open the `supabase_schema.sql` file from this project, copy its contents, paste it into the SQL editor, and click **Run**.
+4. Open the `supabase_schema.sql` file from this project, copy its contents, paste it into the SQL editor, and click **Run**. This is required for teacher creation, gallery entries, and admission enquiries to save in Supabase.
+   - Image files upload to Supabase Storage, while their gallery records are saved separately in the `gallery_images` table.
+   - If your Supabase project already has the `teachers` table, run this migration to add the new classes-taught field:
+     ```sql
+     ALTER TABLE teachers ADD COLUMN IF NOT EXISTS classes_taught TEXT NOT NULL DEFAULT '';
+     ```
 5. In the left navigation, go to **Storage**:
    - Click **New Bucket**.
    - Name the bucket `school-media`.

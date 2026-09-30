@@ -51,7 +51,10 @@ export async function POST(req: NextRequest) {
 
       if (error) {
         console.error('Supabase storage upload error:', error);
-        // Fall back to local storage if bucket error occurs
+        const message = error.message.toLowerCase().includes('bucket not found')
+          ? `Supabase Storage bucket "${bucketName}" was not found. Create this bucket or set SUPABASE_STORAGE_BUCKET to the name of an existing bucket.`
+          : 'Supabase Storage could not save this image. Check the bucket permissions and try again.';
+        return NextResponse.json({ success: false, message }, { status: 502 });
       } else if (data) {
         const { data: publicUrlData } = supabaseAdmin.storage
           .from(bucketName)
@@ -59,13 +62,23 @@ export async function POST(req: NextRequest) {
 
         return NextResponse.json({
           success: true,
-          url: publicUrlData.publicUrl,
+          url: `/api/media/${fileName.split('/').map(encodeURIComponent).join('/')}`,
           fileName,
         });
       }
     }
 
-    // 2. Local Fallback Upload
+    if (process.env.VERCEL === '1') {
+      return NextResponse.json(
+        {
+          success: false,
+          message: 'Image uploads on Vercel require Supabase Storage. Configure Supabase and create the storage bucket before uploading.',
+        },
+        { status: 503 }
+      );
+    }
+
+    // Local disk is only a development fallback; Vercel's filesystem is not persistent.
     const uploadDir = path.join(process.cwd(), 'public', 'uploads');
     if (!fs.existsSync(uploadDir)) {
       fs.mkdirSync(uploadDir, { recursive: true });

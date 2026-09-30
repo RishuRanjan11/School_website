@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { Teacher, GalleryImage, Notice, AdmissionInquiry } from '@/types';
 import { isSupabaseConfigured, supabaseAdmin } from './supabase';
+import { getStorageProxyUrl } from './storage-url';
 
 const LOCAL_DB_PATH = path.join(process.cwd(), 'data', 'local_db.json');
 
@@ -52,9 +53,15 @@ export async function getTeachers(): Promise<Teacher[]> {
       console.error('Supabase getTeachers error:', error);
       return readLocalDb().teachers;
     }
-    return data as Teacher[];
+    return (data as Teacher[]).map((teacher) => ({
+      ...teacher,
+      photo_url: teacher.photo_url ? getStorageProxyUrl(teacher.photo_url) : '',
+    }));
   }
-  return readLocalDb().teachers;
+  return readLocalDb().teachers.map((teacher) => ({
+    ...teacher,
+    photo_url: teacher.photo_url ? getStorageProxyUrl(teacher.photo_url) : '',
+  }));
 }
 
 export async function addTeacher(teacher: Omit<Teacher, 'id' | 'created_at'>): Promise<Teacher> {
@@ -82,6 +89,15 @@ export async function addTeacher(teacher: Omit<Teacher, 'id' | 'created_at'>): P
 }
 
 export async function updateTeacher(id: string, updates: Partial<Teacher>): Promise<Teacher | null> {
+  const db = readLocalDb();
+  const localIndex = db.teachers.findIndex((teacher) => teacher.id === id);
+
+  if (id.startsWith('t-') && localIndex !== -1) {
+    db.teachers[localIndex] = { ...db.teachers[localIndex], ...updates };
+    writeLocalDb(db);
+    return db.teachers[localIndex];
+  }
+
   if (isSupabaseConfigured && supabaseAdmin) {
     const { data, error } = await supabaseAdmin
       .from('teachers')
@@ -94,16 +110,24 @@ export async function updateTeacher(id: string, updates: Partial<Teacher>): Prom
     return data as Teacher;
   }
 
-  const db = readLocalDb();
-  const index = db.teachers.findIndex((t) => t.id === id);
-  if (index === -1) return null;
+  if (localIndex === -1) return null;
 
-  db.teachers[index] = { ...db.teachers[index], ...updates };
+  db.teachers[localIndex] = { ...db.teachers[localIndex], ...updates };
   writeLocalDb(db);
-  return db.teachers[index];
+  return db.teachers[localIndex];
 }
 
 export async function deleteTeacher(id: string): Promise<boolean> {
+  if (id.startsWith('t-')) {
+    const db = readLocalDb();
+    const initialLength = db.teachers.length;
+    db.teachers = db.teachers.filter((teacher) => teacher.id !== id);
+    if (db.teachers.length !== initialLength) {
+      writeLocalDb(db);
+      return true;
+    }
+  }
+
   if (isSupabaseConfigured && supabaseAdmin) {
     const { error } = await supabaseAdmin
       .from('teachers')
@@ -141,7 +165,10 @@ export async function getGalleryImages(category?: string, featuredOnly?: boolean
       console.error('Supabase getGalleryImages error:', error);
       return readLocalDb().gallery_images;
     }
-    return data as GalleryImage[];
+    return (data as GalleryImage[]).map((image) => ({
+      ...image,
+      image_url: getStorageProxyUrl(image.image_url),
+    }));
   }
 
   let images = readLocalDb().gallery_images;
@@ -151,7 +178,10 @@ export async function getGalleryImages(category?: string, featuredOnly?: boolean
   if (category && category !== 'All') {
     images = images.filter((img) => img.category.toLowerCase() === category.toLowerCase());
   }
-  return images;
+  return images.map((image) => ({
+    ...image,
+    image_url: getStorageProxyUrl(image.image_url),
+  }));
 }
 
 export async function addGalleryImage(image: Omit<GalleryImage, 'id' | 'created_at'>): Promise<GalleryImage> {
@@ -179,28 +209,45 @@ export async function addGalleryImage(image: Omit<GalleryImage, 'id' | 'created_
 }
 
 export async function updateGalleryImage(id: string, updates: Partial<GalleryImage>): Promise<GalleryImage | null> {
+  const db = readLocalDb();
+  const localIndex = db.gallery_images.findIndex((img) => img.id === id);
+
+  if (id.startsWith('g-') && localIndex !== -1) {
+    db.gallery_images[localIndex] = { ...db.gallery_images[localIndex], ...updates };
+    writeLocalDb(db);
+    return db.gallery_images[localIndex];
+  }
+
   if (isSupabaseConfigured && supabaseAdmin) {
     const { data, error } = await supabaseAdmin
       .from('gallery_images')
       .update(updates)
       .eq('id', id)
       .select()
-      .single();
+      .maybeSingle();
 
     if (error) throw new Error(error.message);
-    return data as GalleryImage;
+    return data as GalleryImage | null;
   }
 
-  const db = readLocalDb();
-  const index = db.gallery_images.findIndex((img) => img.id === id);
-  if (index === -1) return null;
+  if (localIndex === -1) return null;
 
-  db.gallery_images[index] = { ...db.gallery_images[index], ...updates };
+  db.gallery_images[localIndex] = { ...db.gallery_images[localIndex], ...updates };
   writeLocalDb(db);
-  return db.gallery_images[index];
+  return db.gallery_images[localIndex];
 }
 
 export async function deleteGalleryImage(id: string): Promise<boolean> {
+  if (id.startsWith('g-')) {
+    const db = readLocalDb();
+    const initialLength = db.gallery_images.length;
+    db.gallery_images = db.gallery_images.filter((img) => img.id !== id);
+    if (db.gallery_images.length !== initialLength) {
+      writeLocalDb(db);
+      return true;
+    }
+  }
+
   if (isSupabaseConfigured && supabaseAdmin) {
     const { error } = await supabaseAdmin
       .from('gallery_images')

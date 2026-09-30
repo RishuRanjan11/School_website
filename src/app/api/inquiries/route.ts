@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getInquiries, addInquiry, updateInquiryStatus } from '@/lib/db';
 import { verifyAdminRequest } from '@/lib/auth';
+import { getDatabaseSetupError } from '@/lib/database-errors';
+import { admissionClasses, getAdmissionStreams } from '@/lib/admissions';
 
 export async function GET(req: NextRequest) {
   try {
@@ -28,9 +30,19 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { student_name, parent_name, email, phone, class_applying, stream, message } = body;
 
-    if (!student_name || !parent_name || !email || !phone || !class_applying) {
+    if (!student_name || !parent_name || !email || !phone || !class_applying || !stream) {
       return NextResponse.json(
-        { success: false, message: 'Student Name, Parent Name, Email, Phone, and Class are required.' },
+        { success: false, message: 'Student Name, Parent Name, Email, Phone, Class, and Stream are required.' },
+        { status: 400 }
+      );
+    }
+
+    if (
+      !admissionClasses.includes(class_applying)
+      || !getAdmissionStreams(class_applying).includes(stream)
+    ) {
+      return NextResponse.json(
+        { success: false, message: 'Select a valid class and its matching stream.' },
         { status: 400 }
       );
     }
@@ -41,7 +53,7 @@ export async function POST(req: NextRequest) {
       email: email.trim(),
       phone: phone.trim(),
       class_applying: class_applying.trim(),
-      stream: stream ? stream.trim() : '',
+      stream: stream.trim(),
       message: message ? message.trim() : '',
     });
 
@@ -53,7 +65,11 @@ export async function POST(req: NextRequest) {
   } catch (error) {
     console.error('Error submitting inquiry:', error);
     return NextResponse.json(
-      { success: false, message: 'Failed to submit inquiry' },
+      {
+        success: false,
+        message: getDatabaseSetupError(error)
+          || 'Could not save your inquiry. Please try again or contact the school office.',
+      },
       { status: 500 }
     );
   }

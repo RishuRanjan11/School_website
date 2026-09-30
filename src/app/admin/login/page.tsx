@@ -10,13 +10,12 @@ import {
   ArrowRight, 
   AlertCircle, 
   ShieldCheck,
-  Info
 } from 'lucide-react';
 
 export default function AdminLoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState('admin@school.edu');
-  const [password, setPassword] = useState('Admin@12345');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -65,7 +64,7 @@ export default function AdminLoginPage() {
             Administrator Portal
           </h1>
           <p className="text-xs text-slate-400 mt-1">
-            Apex International Academy • Administrative Control Center
+            UUMV Mahasingh Hasauli • Administrative Control Center
           </p>
         </div>
 
@@ -90,7 +89,7 @@ export default function AdminLoginPage() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="admin@school.edu"
+                  placeholder="Enter admin email"
                   className="w-full pl-10 pr-4 py-2.5 bg-slate-800/80 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent transition placeholder:text-slate-500"
                 />
               </div>
@@ -132,17 +131,6 @@ export default function AdminLoginPage() {
             </button>
           </form>
 
-          {/* Master Credential Helper Note */}
-          <div className="mt-6 pt-6 border-t border-slate-800/80">
-            <div className="p-3 rounded-xl bg-slate-800/40 border border-slate-700/50 flex items-start gap-2.5">
-              <Info className="w-4 h-4 text-gold-400 shrink-0 mt-0.5" />
-              <div className="text-[11px] text-slate-400 leading-normal">
-                <span className="font-semibold text-slate-300 block mb-0.5">Default Master Access:</span>
-                Email: <code className="text-gold-300">admin@school.edu</code><br />
-                Password: <code className="text-gold-300">Admin@12345</code>
-              </div>
-            </div>
-          </div>
         </div>
 
         <div className="text-center mt-6">

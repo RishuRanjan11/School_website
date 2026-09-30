@@ -8,7 +8,7 @@ export default function PrivacyPage() {
         <p className="text-sm text-slate-500">Last updated: October 2026</p>
         <div className="space-y-4 text-sm text-slate-600 leading-relaxed">
           <p>
-            Apex International Academy is committed to respecting the privacy of our students, parents, faculty, and website visitors. This Privacy Policy details the types of information we collect and how we utilize it.
+            UUMV Mahasingh Hasauli is committed to respecting the privacy of students, parents, faculty, and website visitors. This Privacy Policy details the types of information we collect and how we utilize it.
           </p>
           <h2 className="text-lg font-bold text-slate-800 pt-2">1. Information We Collect</h2>
           <p>

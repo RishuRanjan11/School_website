@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getGalleryImages, addGalleryImage } from '@/lib/db';
 import { verifyAdminRequest } from '@/lib/auth';
+import { getStorageProxyUrl } from '@/lib/storage-url';
+import { getDatabaseSetupError } from '@/lib/database-errors';
+
+export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
   try {
@@ -9,7 +13,13 @@ export async function GET(req: NextRequest) {
     const featuredOnly = searchParams.get('featured') === 'true';
 
     const images = await getGalleryImages(category, featuredOnly);
-    return NextResponse.json({ success: true, data: images });
+    return NextResponse.json({
+      success: true,
+      data: images.map((image) => ({
+        ...image,
+        image_url: getStorageProxyUrl(image.image_url),
+      })),
+    });
   } catch (error) {
     console.error('Error fetching gallery images:', error);
     return NextResponse.json(
@@ -48,11 +58,21 @@ export async function POST(req: NextRequest) {
       event_date: event_date || new Date().toISOString().split('T')[0],
     });
 
-    return NextResponse.json({ success: true, data: newImage }, { status: 201 });
+    return NextResponse.json({
+      success: true,
+      data: {
+        ...newImage,
+        image_url: getStorageProxyUrl(newImage.image_url),
+      },
+    }, { status: 201 });
   } catch (error) {
     console.error('Error adding gallery image:', error);
     return NextResponse.json(
-      { success: false, message: 'Failed to add gallery image' },
+      {
+        success: false,
+        message: getDatabaseSetupError(error)
+          || (error instanceof Error ? error.message : 'Failed to add gallery image'),
+      },
       { status: 500 }
     );
   }

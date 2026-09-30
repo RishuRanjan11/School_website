@@ -115,7 +115,7 @@ export default function AdminLayout({
             </div>
             <div>
               <h2 className="font-extrabold text-sm text-white tracking-tight leading-snug">
-                Apex Academy
+                UUMV Mahasingh Hasauli
               </h2>
               <div className="flex items-center gap-1 text-[11px] text-gold-400 font-medium">
                 <ShieldCheck className="w-3 h-3" />
