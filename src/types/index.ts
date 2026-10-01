@@ -1,12 +1,9 @@
 export interface Teacher {
   id: string;
   name: string;
-  subject: string;
   department: string; // e.g. "Higher Secondary (Science)", "Higher Secondary (Commerce)", "Higher Secondary (Arts)", "Secondary (IX-X)", "Middle & Primary"
   designation: string; // e.g. "PGT Physics", "Head of Department", "TGT English"
   qualification?: string;
-  classes_taught?: string;
-  experience: string; // e.g. "12 Years"
   email: string;
   phone: string;
   photo_url: string;

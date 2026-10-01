@@ -34,7 +34,6 @@ export default function FacultyPage() {
     const q = searchQuery.toLowerCase();
     return (
       t.name.toLowerCase().includes(q) ||
-      t.subject.toLowerCase().includes(q) ||
       t.department.toLowerCase().includes(q)
     );
   });
@@ -71,7 +70,7 @@ export default function FacultyPage() {
             <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
               type="text"
-              placeholder="Search teacher by name or subject..."
+              placeholder="Search teacher by name"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs sm:text-sm focus:outline-none focus:ring-1 focus:ring-school-600"
@@ -109,33 +108,22 @@ export default function FacultyPage() {
                     <div className="text-xs font-semibold text-school-800 mt-0.5 truncate">
                       {teacher.designation}
                     </div>
-                    <div className="inline-block px-2 py-0.5 rounded bg-blue-50 text-blue-800 text-[11px] font-semibold mt-1">
-                      {teacher.subject}
-                    </div>
+
                   </div>
                 </div>
 
-                <div className="mt-4 pt-3 border-t border-slate-100 space-y-1.5 text-xs text-slate-600">
-                  <div className="flex items-center gap-1.5">
-                    <Briefcase className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                    <span className="font-semibold text-slate-800">Experience:</span>
-                    <span>{teacher.experience}</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <BookOpen className="w-3.5 h-3.5 text-school-600 shrink-0" />
-                    <span className="font-semibold text-slate-800">Classes:</span>
-                    <span className="truncate">{teacher.classes_taught || 'Not specified'}</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <span className="font-semibold text-slate-800">Stream:</span>
-                    <span className="truncate">{teacher.department}</span>
-                  </div>
+
+                <div className="flex items-center gap-1.5">
+                  <BookOpen className="w-3.5 h-3.5 text-school-600 shrink-0" />
+                  <span className="font-semibold text-slate-800">Department:</span>
+                  <span className="truncate">{teacher.department}</span>
                 </div>
               </div>
-            ))}
-          </div>
-        )}
+              
+        ))}
       </div>
+        )}
     </div>
+    </div >
   );
 }

@@ -209,10 +209,8 @@ export default async function HomePage() {
                 />
                 <div className="overflow-hidden">
                   <h4 className="font-bold text-sm text-slate-900 truncate">{t.name}</h4>
-                  <div className="text-xs font-semibold text-school-700 truncate">{t.subject}</div>
-                  <div className="text-[11px] text-slate-500 truncate">
-                    Classes: {t.classes_taught || 'Not specified'} • {t.experience}
-                  </div>
+                  <div className="text-xs font-semibold text-school-700 truncate">{t.designation}</div>
+                  <div className="text-[11px] text-slate-500 truncate">{t.department}</div>
                 </div>
               </div>
             ))}

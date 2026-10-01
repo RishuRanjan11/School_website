@@ -5,10 +5,7 @@ export function getDatabaseSetupError(error: unknown): string | null {
     return 'Required Supabase tables are missing. Run supabase_schema.sql in the Supabase SQL Editor, then retry.';
   }
 
-  if (
-    error.message.includes('PGRST204') ||
-    (error.message.includes('classes_taught') && error.message.includes('column'))
-  ) {
+  if (error.message.includes('PGRST204')) {
     return 'The Supabase database schema is out of date. Run the latest supabase_schema.sql in the Supabase SQL Editor, then retry.';
   }
 

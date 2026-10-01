@@ -7,12 +7,9 @@
 CREATE TABLE IF NOT EXISTS teachers (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     name VARCHAR(255) NOT NULL,
-    subject VARCHAR(255) NOT NULL,
     department VARCHAR(255) NOT NULL,
     designation VARCHAR(255) NOT NULL,
     qualification VARCHAR(255) NOT NULL,
-    classes_taught TEXT NOT NULL DEFAULT '',
-    experience VARCHAR(100) NOT NULL,
     email VARCHAR(255),
     phone VARCHAR(50),
     photo_url TEXT,
@@ -21,9 +18,6 @@ CREATE TABLE IF NOT EXISTS teachers (
     created_at TIMESTAMPTZ DEFAULT NOW(),
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
-
-ALTER TABLE teachers
-ADD COLUMN IF NOT EXISTS classes_taught TEXT NOT NULL DEFAULT '';
 
 -- 2. Create School Event & Gallery Images Table
 CREATE TABLE IF NOT EXISTS gallery_images (

@@ -36,23 +36,20 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json();
-    const { name, subject, department, designation, experience, email, phone, photo_url, bio, classes_taught } = body;
+    const { name, department, designation, email, phone, photo_url, bio } = body;
 
-    if (!name || !subject || !department) {
+    if (!name || !department) {
       return NextResponse.json(
-        { success: false, message: 'Name, Subject, and Department are required.' },
+        { success: false, message: 'Name and Department are required.' },
         { status: 400 }
       );
     }
 
     const newTeacher = await addTeacher({
       name: name.trim(),
-      subject: subject.trim(),
       department: department.trim(),
       designation: (designation || 'Teacher').trim(),
       qualification: '',
-      classes_taught: (classes_taught || '').trim(),
-      experience: (experience || '1 Year').trim(),
       email: (email || '').trim(),
       phone: (phone || '').trim(),
       photo_url: photo_url || '',

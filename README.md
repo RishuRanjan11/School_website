@@ -15,7 +15,7 @@ Built for **100% Free Hosting** on **Vercel** + **Supabase**.
   - **Commerce Stream:** Accountancy, Business Studies, Economics, Applied Maths, CA Foundation guidance.
   - **Humanities / Arts:** Political Science, History, Psychology, Sociology, Civil Services foundation.
   - Secondary (Classes IX-X) and Primary/Middle sections.
-- **Faculty & Teachers Directory (`/faculty`):** Search by teacher name, subject, or qualification; filter by department/stream.
+- **Faculty & Teachers Directory (`/faculty`):** Search by teacher name or department and filter by stream.
 - **Campus & Facilities (`/facilities`):** Science laboratories, AI & Robotics lab, Olympic-standard sports grounds, digital library, and GPS-tracked school buses.
 - **Events & Campus Gallery (`/gallery`):** Category filter tabs (Campus, Sports, Annual Day, Science Exhibition, Events) with interactive modal lightbox viewer.
 - **Admissions & Contact (`/contact`):** Interactive online admission inquiry form with dynamic stream selection, contact details, and location map.
@@ -76,10 +76,7 @@ You can host this website and database for free using **Vercel** and **Supabase*
 3. In the left navigation, go to **SQL Editor** ➔ click **New Query**.
 4. Open the `supabase_schema.sql` file from this project, copy its contents, paste it into the SQL editor, and click **Run**. This is required for teacher creation, gallery entries, and admission enquiries to save in Supabase.
    - Image files upload to Supabase Storage, while their gallery records are saved separately in the `gallery_images` table.
-   - If your Supabase project already has the `teachers` table, run this migration to add the new classes-taught field:
-     ```sql
-     ALTER TABLE teachers ADD COLUMN IF NOT EXISTS classes_taught TEXT NOT NULL DEFAULT '';
-     ```
+   - If your Supabase project already has the `teachers` table, run the latest schema from `supabase_schema.sql` to match the current teacher structure.
 5. In the left navigation, go to **Storage**:
    - Click **New Bucket**.
    - Name the bucket `school-media`.

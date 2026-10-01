@@ -135,7 +135,7 @@ export default async function AdminDashboardPage() {
             </Link>
           </div>
           <p className="text-xs text-slate-400 leading-relaxed">
-            Update teacher designations, classes taught, subject mappings, and contact information displayed on the website.
+            Update teacher designations, department assignments, and contact information displayed on the website.
           </p>
           <div className="pt-2">
             <Link
