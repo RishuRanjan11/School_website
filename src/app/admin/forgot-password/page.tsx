@@ -77,8 +77,12 @@ export default function ForgotPasswordPage() {
               <KeyRound className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
                 id="recovery-code"
-                type="password"
+                type="text"
                 required
+                inputMode="numeric"
+                pattern="[0-9]{4,6}"
+                minLength={4}
+                maxLength={6}
                 autoComplete="off"
                 value={recoveryCode}
                 onChange={(event) => setRecoveryCode(event.target.value)}

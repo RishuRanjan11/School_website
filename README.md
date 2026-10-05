@@ -67,10 +67,11 @@ Built for **100% Free Hosting** on **Vercel** + **Supabase**.
 
 ### Admin Password Reset Setup
 
-- Generate a private recovery code with `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"` and set it as `ADMIN_PASSWORD_RECOVERY_CODE` in `.env.local` or your hosting provider's environment settings. Never expose or commit this code.
+- Set `ADMIN_PASSWORD_RECOVERY_CODE` to a private 4-to-6-digit PIN in `.env.local` or your hosting provider's environment settings. Use 6 digits where possible and never expose or commit it.
 - For Supabase deployments, apply the updated `supabase_schema.sql` and configure `SUPABASE_SERVICE_ROLE_KEY`; admin password hashes are stored in the private `admin_credentials` table.
 - Without Supabase, the password hash is stored in the ignored local file `data/admin_credentials.json`. This local-file fallback is intended for development and requires persistent writable storage.
 - Passwords must be at least 12 characters and no more than 72 UTF-8 bytes.
+- Recovery PIN attempts are limited to 5 per IP address per 15-minute window in each running app instance.
 
 ---
 
