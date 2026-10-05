@@ -65,23 +65,31 @@ CREATE TABLE IF NOT EXISTS admin_credentials (
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
--- 6. Enable Row Level Security (RLS)
+-- 6. Editable public school settings
+CREATE TABLE IF NOT EXISTS school_settings (
+    id TEXT PRIMARY KEY CHECK (id = 'school'),
+    address TEXT NOT NULL,
+    updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- 7. Enable Row Level Security (RLS)
 ALTER TABLE teachers ENABLE ROW LEVEL SECURITY;
 ALTER TABLE gallery_images ENABLE ROW LEVEL SECURITY;
 ALTER TABLE notices ENABLE ROW LEVEL SECURITY;
 ALTER TABLE admission_inquiries ENABLE ROW LEVEL SECURITY;
 ALTER TABLE admin_credentials ENABLE ROW LEVEL SECURITY;
+ALTER TABLE school_settings ENABLE ROW LEVEL SECURITY;
 
--- 7. Public Read Policies for website visitors
+-- 8. Public Read Policies for website visitors
 CREATE POLICY "Public can view teachers" ON teachers FOR SELECT USING (true);
 CREATE POLICY "Public can view gallery" ON gallery_images FOR SELECT USING (true);
 CREATE POLICY "Public can view notices" ON notices FOR SELECT USING (true);
 CREATE POLICY "Public can submit admission inquiry" ON admission_inquiries FOR INSERT WITH CHECK (true);
 
--- 8. Service Role / Admin full access (Bypasses RLS with service_role key)
+-- 9. Service Role / Admin full access (Bypasses RLS with service_role key)
 -- Note: Our Next.js Admin API routes use SUPABASE_SERVICE_ROLE_KEY to perform Add, Edit, Delete securely!
 
--- 9. Storage bucket instructions:
+-- 10. Storage bucket instructions:
 -- In Supabase Dashboard -> Storage:
 -- Create a new Public bucket named: "school-media"
 -- Toggle "Public bucket" ON so visitors can view uploaded school and teacher photos.

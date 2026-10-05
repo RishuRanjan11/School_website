@@ -23,6 +23,7 @@ Built for **100% Free Hosting** on **Vercel** + **Supabase**.
 ### 2. Admin Dashboard (`/admin`)
 - **Secure Authentication:** Protected `/admin/login` using JWT session stored in HTTP-Only cookies.
 - **Password Management:** Change the password from the admin sidebar or reset it from the login screen using the server-configured recovery code.
+- **School Address:** Edit the address from the admin sidebar; the public pages, header, and footer use the saved address.
 - **Teacher Management (`/admin/teachers`):**
   - View all teachers in a structured, searchable table.
   - Add new teachers with photos (via file upload or URL), department/stream, qualification, and contact info.
@@ -69,6 +70,8 @@ Built for **100% Free Hosting** on **Vercel** + **Supabase**.
 
 - Set `ADMIN_PASSWORD_RECOVERY_CODE` to a private 4-to-6-digit PIN in `.env.local` or your hosting provider's environment settings. Use 6 digits where possible and never expose or commit it.
 - For Supabase deployments, apply the updated `supabase_schema.sql` and configure `SUPABASE_SERVICE_ROLE_KEY`; admin password hashes are stored in the private `admin_credentials` table.
+- The editable school address is stored in the private `school_settings` table when Supabase is configured.
+- Set `NEXT_PUBLIC_SCHOOL_UDISE` to the school's UDISE code; it is displayed consistently throughout the public site.
 - Without Supabase, the password hash is stored in the ignored local file `data/admin_credentials.json`. This local-file fallback is intended for development and requires persistent writable storage.
 - Passwords must be at least 12 characters and no more than 72 UTF-8 bytes.
 - Recovery PIN attempts are limited to 5 per IP address per 15-minute window in each running app instance.

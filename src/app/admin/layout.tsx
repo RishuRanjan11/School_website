@@ -14,7 +14,8 @@ import {
   Menu, 
   X,
   ShieldCheck,
-  LockKeyhole
+  LockKeyhole,
+  MapPin
 } from 'lucide-react';
 
 export default function AdminLayout({
@@ -85,6 +86,7 @@ export default function AdminLayout({
     { name: 'Teachers Directory', href: '/admin/teachers', icon: Users },
     { name: 'Homepage Images & Gallery', href: '/admin/gallery', icon: ImageIcon },
     { name: 'Admission Inquiries', href: '/admin/inquiries', icon: Inbox },
+    { name: 'School Address', href: '/admin/school-address', icon: MapPin },
     { name: 'Change Password', href: '/admin/security', icon: LockKeyhole },
   ];
 

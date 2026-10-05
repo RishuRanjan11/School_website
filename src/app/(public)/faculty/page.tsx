@@ -5,8 +5,11 @@ import Link from 'next/link';
 import { Teacher } from '@/types';
 import { Users, Search, Lock, BookOpen, Briefcase } from 'lucide-react';
 import TeacherAvatar from '@/components/TeacherAvatar';
+import { useSchoolAddress } from '@/lib/use-school-address';
+import { SCHOOL_UDISE_CODE } from '@/lib/school-address';
 
 export default function FacultyPage() {
+  const schoolAddress = useSchoolAddress();
   const [teachers, setTeachers] = useState<Teacher[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
@@ -45,13 +48,13 @@ export default function FacultyPage() {
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
           <div>
             <div className="inline-block px-2.5 py-0.5 rounded bg-school-100 text-school-900 text-xs font-bold mb-1">
-              School UDISE: 100051603811
+              School UDISE: {SCHOOL_UDISE_CODE}
             </div>
             <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
               Teachers Details
             </h1>
             <p className="text-xs sm:text-sm text-slate-600">
-              UUMV Mahasingh Hasauli, Madhepur, Madhubani, Bihar
+              UUMV Mahasingh Hasauli, {schoolAddress}
             </p>
           </div>
 

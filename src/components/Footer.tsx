@@ -1,6 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 import { GraduationCap, MapPin, Phone, Mail, ShieldCheck, Lock } from 'lucide-react';
+import SchoolAddressText from '@/components/SchoolAddressText';
+import { SCHOOL_UDISE_CODE } from '@/lib/school-address';
 
 export default function Footer() {
   return (
@@ -21,7 +23,7 @@ export default function Footer() {
               Utkramit Uccha Madhyamik Vidyalaya providing education from foundational classes up to Class 12th (+2).
             </p>
             <div className="inline-block px-2.5 py-1 rounded bg-slate-800 border border-slate-700 text-xs font-bold text-gold-400">
-              School UDISE: 100051603811
+              School UDISE: {SCHOOL_UDISE_CODE}
             </div>
           </div>
 
@@ -73,7 +75,7 @@ export default function Footer() {
             <div className="space-y-2 text-xs text-slate-400">
               <p className="flex items-start gap-2 text-slate-300">
                 <MapPin className="w-4 h-4 text-gold-400 shrink-0 mt-0.5" />
-                <span>Madhepur, Madhubani, Bihar, India</span>
+                <SchoolAddressText />
               </p>
               <p className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-gold-400 shrink-0" />
@@ -85,9 +87,9 @@ export default function Footer() {
         </div>
 
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-2">
-          <p>© {new Date().getFullYear()} UUMV Mahasingh Hasauli, Madhepur, Madhubani, Bihar.</p>
+          <p>© {new Date().getFullYear()} UUMV Mahasingh Hasauli, <SchoolAddressText />.</p>
           <div className="flex items-center gap-4">
-            <span className="text-slate-400">School UDISE: 100051603811</span>
+            <span className="text-slate-400">School UDISE: {SCHOOL_UDISE_CODE}</span>
             <span>•</span>
             <Link href="/admin/login" className="text-gold-400 hover:underline">
               Admin Login

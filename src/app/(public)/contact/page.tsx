@@ -3,8 +3,11 @@
 import React, { useState } from 'react';
 import { MapPin, Phone, Mail, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import { admissionClasses, getAdmissionStreams } from '@/lib/admissions';
+import { useSchoolAddress } from '@/lib/use-school-address';
+import { SCHOOL_UDISE_CODE } from '@/lib/school-address';
 
 export default function ContactPage() {
+  const schoolAddress = useSchoolAddress();
   const initialFormData = {
     student_name: '',
     parent_name: '',
@@ -62,13 +65,13 @@ export default function ContactPage() {
         {/* Header */}
         <div className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-2">
           <div className="inline-block px-3 py-1 rounded bg-school-100 text-school-900 text-xs font-bold">
-            School UDISE: 100051603811
+            School UDISE: {SCHOOL_UDISE_CODE}
           </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
             School Contact & Address
           </h1>
           <p className="text-xs sm:text-sm text-slate-600">
-            UUMV Mahasingh Hasauli, Madhepur, Madhubani, Bihar
+            UUMV Mahasingh Hasauli, {schoolAddress}
           </p>
         </div>
 
@@ -82,7 +85,7 @@ export default function ContactPage() {
                 <MapPin className="w-5 h-5 text-gold-600 shrink-0 mt-0.5" />
                 <div>
                   <strong className="text-slate-900 block">Address:</strong>
-                  <span className="text-slate-600">Madhepur, Madhubani, Bihar, India</span>
+                  <span className="text-slate-600">{schoolAddress}</span>
                 </div>
               </div>
 
@@ -99,7 +102,7 @@ export default function ContactPage() {
 
             <div className="pt-4 border-t border-slate-100">
               <span className="text-xs font-bold text-school-800">
-                School UDISE Code: 100051603811
+                School UDISE Code: {SCHOOL_UDISE_CODE}
               </span>
             </div>
           </div>

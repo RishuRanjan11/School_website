@@ -1,6 +1,8 @@
 import React from 'react';
 import { GraduationCap, MapPin, CheckCircle } from 'lucide-react';
 import FallbackImage from '@/components/FallbackImage';
+import SchoolAddressText from '@/components/SchoolAddressText';
+import { SCHOOL_UDISE_CODE } from '@/lib/school-address';
 
 export default function AboutPage() {
   return (
@@ -9,14 +11,14 @@ export default function AboutPage() {
         {/* Header */}
         <div className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-3">
           <div className="inline-block px-3 py-1 rounded bg-school-100 text-school-900 text-xs font-bold">
-            School UDISE: 100051603811
+            School UDISE: {SCHOOL_UDISE_CODE}
           </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
             About UUMV Mahasingh Hasauli
           </h1>
           <div className="flex items-center gap-1.5 text-sm font-semibold text-slate-700">
             <MapPin className="w-4 h-4 text-gold-600 shrink-0" />
-            <span>Madhepur, Madhubani, Bihar</span>
+            <SchoolAddressText />
           </div>
           <p className="text-slate-600 text-sm leading-relaxed pt-2">
             Utkramit Uccha Madhyamik Vidyalaya (UUMV) Mahasingh Hasauli is an established government co-educational institution providing school education up to the +2 (Senior Secondary) level in Madhepur block of Madhubani district, Bihar.
@@ -34,7 +36,7 @@ export default function AboutPage() {
             />
           </div>
           <div className="p-4 bg-slate-50 border-t border-slate-200 text-xs text-slate-600 font-medium text-center">
-            School Building of UUMV Mahasingh Hasauli, Madhepur, Madhubani, Bihar
+            School Building of UUMV Mahasingh Hasauli, <SchoolAddressText />
           </div>
         </div>
 
@@ -50,7 +52,7 @@ export default function AboutPage() {
             </div>
             <div className="p-3 bg-slate-50 rounded-lg border border-slate-200">
               <span className="text-slate-500 font-medium block">School UDISE Code</span>
-              <strong className="text-slate-900">100051603811</strong>
+              <strong className="text-slate-900">{SCHOOL_UDISE_CODE}</strong>
             </div>
             <div className="p-3 bg-slate-50 rounded-lg border border-slate-200">
               <span className="text-slate-500 font-medium block">Block & District</span>

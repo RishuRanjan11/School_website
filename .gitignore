@@ -29,6 +29,7 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 /data/admin_credentials.json
+/data/school_settings.json
 
 # vercel
 .vercel

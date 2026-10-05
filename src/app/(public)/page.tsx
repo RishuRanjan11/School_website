@@ -15,6 +15,8 @@ import {
 import HomeGalleryShowcase from '@/components/HomeGalleryShowcase';
 import TeacherAvatar from '@/components/TeacherAvatar';
 import { getNotices, getTeachers } from '@/lib/db';
+import { SCHOOL_UDISE_CODE } from '@/lib/school-address';
+import SchoolAddressText from '@/components/SchoolAddressText';
 
 export const revalidate = 0;
 
@@ -31,7 +33,7 @@ export default async function HomePage() {
             {/* Left Col: School Information */}
             <div className="lg:col-span-7 space-y-4">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-school-100 text-school-900 text-xs font-bold">
-                <span>School UDISE: 100051603811</span>
+                <span>School UDISE: {SCHOOL_UDISE_CODE}</span>
               </div>
 
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
@@ -40,7 +42,7 @@ export default async function HomePage() {
 
               <div className="flex items-center gap-1.5 text-sm sm:text-base font-semibold text-slate-700">
                 <MapPin className="w-4 h-4 text-gold-600 shrink-0" />
-                <span>Madhepur, Madhubani, Bihar</span>
+                <SchoolAddressText />
               </div>
 
               <p className="text-slate-600 text-sm sm:text-base leading-relaxed pt-1">
@@ -96,7 +98,7 @@ export default async function HomePage() {
                   />
                   <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-950/80 to-transparent p-4">
                     <span className="text-xs font-bold text-gold-400">School Campus Photo</span>
-                    <p className="text-xs text-white">UUMV Mahasingh Hasauli, Madhepur, Madhubani</p>
+                    <p className="text-xs text-white">UUMV Mahasingh Hasauli, <SchoolAddressText /></p>
                   </div>
                 </div>
               </div>

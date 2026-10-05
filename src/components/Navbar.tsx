@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useSchoolAddress } from '@/lib/use-school-address';
+import { SCHOOL_UDISE_CODE } from '@/lib/school-address';
 import { 
   GraduationCap, 
   MapPin, 
@@ -18,6 +20,7 @@ import {
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const schoolAddress = useSchoolAddress();
 
   const isCurrent = (path: string) => {
     if (path === '/' && pathname === '/') return true;
@@ -40,11 +43,11 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-1.5 text-center sm:text-left">
           <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-3 gap-y-1 text-slate-200">
             <span className="font-bold text-gold-400 bg-school-800 px-2 py-0.5 rounded border border-school-700">
-              School UDISE: 100051603811
+              School UDISE: {SCHOOL_UDISE_CODE}
             </span>
             <span className="flex items-center gap-1">
               <MapPin className="w-3.5 h-3.5 text-gold-400" />
-              <span>Madhepur, Madhubani, Bihar</span>
+              <span>{schoolAddress}</span>
             </span>
             <span className="hidden md:inline text-school-300">
               • Education up to Class 12th (+2)
@@ -76,7 +79,7 @@ export default function Navbar() {
                 UUMV Mahasingh Hasauli
               </div>
               <p className="text-xs text-slate-600 font-medium">
-                Madhepur Madhubani Bihar • Senior Secondary (+2) School
+                {schoolAddress} • Senior Secondary (+2) School
               </p>
             </div>
           </Link>
