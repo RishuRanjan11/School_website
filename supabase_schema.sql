@@ -58,12 +58,10 @@ CREATE TABLE IF NOT EXISTS admission_inquiries (
     created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
--- 5. Admin password overrides and one-time password reset tokens
+-- 5. Admin password overrides
 CREATE TABLE IF NOT EXISTS admin_credentials (
     id TEXT PRIMARY KEY CHECK (id = 'admin-1'),
     password_hash TEXT,
-    reset_token_hash TEXT,
-    reset_token_expires_at TIMESTAMPTZ,
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 

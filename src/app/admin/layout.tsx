@@ -30,7 +30,6 @@ export default function AdminLayout({
   const isPublicAuthPage = [
     '/admin/login',
     '/admin/forgot-password',
-    '/admin/reset-password',
   ].includes(pathname);
 
   useEffect(() => {

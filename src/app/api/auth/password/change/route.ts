@@ -31,11 +31,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ success: false, message: 'Current password is incorrect.' }, { status: 400 });
     }
 
-    await saveAdminCredentials({
-      passwordHash: await bcrypt.hash(newPassword, 12),
-      resetTokenHash: null,
-      resetTokenExpiresAt: null,
-    });
+    await saveAdminCredentials({ passwordHash: await bcrypt.hash(newPassword, 12) });
 
     return NextResponse.json({ success: true, message: 'Password changed successfully.' });
   } catch (error) {
