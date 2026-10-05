@@ -186,7 +186,7 @@ export default async function HomePage() {
                 School Teachers
               </h2>
               <p className="text-xs text-slate-600">
-                Teaching staff at UUMV Mahasingh Hasauli (Controlled by Admin).
+                Teaching staff at UUMV Mahasingh Hasauli.
               </p>
             </div>
             <Link
