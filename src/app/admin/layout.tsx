@@ -13,7 +13,8 @@ import {
   ExternalLink, 
   Menu, 
   X,
-  ShieldCheck
+  ShieldCheck,
+  LockKeyhole
 } from 'lucide-react';
 
 export default function AdminLayout({
@@ -26,10 +27,14 @@ export default function AdminLayout({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [checkingAuth, setCheckingAuth] = useState(true);
 
-  const isLoginPage = pathname === '/admin/login';
+  const isPublicAuthPage = [
+    '/admin/login',
+    '/admin/forgot-password',
+    '/admin/reset-password',
+  ].includes(pathname);
 
   useEffect(() => {
-    if (isLoginPage) {
+    if (isPublicAuthPage) {
       setCheckingAuth(false);
       return;
     }
@@ -48,7 +53,7 @@ export default function AdminLayout({
       }
     }
     checkSession();
-  }, [pathname, isLoginPage, router]);
+  }, [pathname, isPublicAuthPage, router]);
 
   const handleLogout = async () => {
     try {
@@ -61,7 +66,7 @@ export default function AdminLayout({
     }
   };
 
-  if (isLoginPage) {
+  if (isPublicAuthPage) {
     return <>{children}</>;
   }
 
@@ -81,6 +86,7 @@ export default function AdminLayout({
     { name: 'Teachers Directory', href: '/admin/teachers', icon: Users },
     { name: 'Homepage Images & Gallery', href: '/admin/gallery', icon: ImageIcon },
     { name: 'Admission Inquiries', href: '/admin/inquiries', icon: Inbox },
+    { name: 'Change Password', href: '/admin/security', icon: LockKeyhole },
   ];
 
   return (

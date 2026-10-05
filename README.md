@@ -22,6 +22,7 @@ Built for **100% Free Hosting** on **Vercel** + **Supabase**.
 
 ### 2. Admin Dashboard (`/admin`)
 - **Secure Authentication:** Protected `/admin/login` using JWT session stored in HTTP-Only cookies.
+- **Password Management:** Change the password from the admin sidebar or request a one-time password reset link by email from the login screen.
 - **Teacher Management (`/admin/teachers`):**
   - View all teachers in a structured, searchable table.
   - Add new teachers with photos (via file upload or URL), department/stream, qualification, and contact info.
@@ -63,6 +64,14 @@ Built for **100% Free Hosting** on **Vercel** + **Supabase**.
 - **Password:** `Admin@12345`
 
 *(You can customize these credentials in your `.env.local` file).*
+
+### Admin Password Reset Setup
+
+- Configure `ADMIN_APP_URL` with the public application URL. Use HTTPS in production.
+- Configure `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD`, and `SMTP_FROM` to enable reset emails.
+- For Supabase deployments, apply the updated `supabase_schema.sql` and configure `SUPABASE_SERVICE_ROLE_KEY`; admin credentials and single-use reset tokens are stored in the private `admin_credentials` table.
+- Without Supabase, the password hash is stored in the ignored local file `data/admin_credentials.json`. This local-file fallback is intended for development and requires persistent writable storage.
+- Reset links expire after 30 minutes and can be requested once per minute. Passwords must be at least 12 characters and no more than 72 UTF-8 bytes.
 
 ---
 

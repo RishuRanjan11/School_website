@@ -100,6 +100,9 @@ export default function AdminLoginPage() {
                 <label className="block text-xs font-bold uppercase tracking-wider text-slate-300">
                   Password
                 </label>
+                <Link href="/admin/forgot-password" className="text-xs text-gold-400 hover:text-gold-300">
+                  Forgot password?
+                </Link>
               </div>
               <div className="relative">
                 <Lock className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />

@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
+import bcrypt from 'bcryptjs';
 import { signAdminToken, AUTH_COOKIE_NAME } from '@/lib/auth';
+import { getAdminCredentials } from '@/lib/admin-credentials';
 
 export async function POST(req: NextRequest) {
   try {
@@ -7,6 +9,7 @@ export async function POST(req: NextRequest) {
 
     const adminEmail = process.env.ADMIN_DEFAULT_EMAIL || 'admin@school.edu';
     const adminPassword = process.env.ADMIN_DEFAULT_PASSWORD || 'Admin@12345';
+    const credentials = await getAdminCredentials();
 
     if (!email || !password) {
       return NextResponse.json(
@@ -15,7 +18,11 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    if (email.trim().toLowerCase() !== adminEmail.trim().toLowerCase() || password !== adminPassword) {
+    const passwordMatches = credentials.passwordHash
+      ? await bcrypt.compare(password, credentials.passwordHash)
+      : password === adminPassword;
+
+    if (email.trim().toLowerCase() !== adminEmail.trim().toLowerCase() || !passwordMatches) {
       return NextResponse.json(
         { success: false, message: 'Invalid email or password' },
         { status: 401 }
